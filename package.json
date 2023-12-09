@@ -1,0 +1,43 @@
+{
+  "name": "GuessNumber",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cmd": "gulp",
+    "build": "yarn cmd default",
+    "watch": "yarn cmd watch",
+    "clear": "yarn cmd clean",
+    "test": "jest"
+  },
+  "author": "Nataliia Sychevska",
+  "license": "ISC",
+  "dependencies": {
+    "del": "6.1.1",
+    "sass": "1.69.5",
+    "cross-env": "7.0.3"
+  },
+  "devDependencies": {
+    "@types/jest": "29.5.10",
+    "eslint": "^8.55.0",
+    "eslint-config-prettier": "8.8.0",
+    "eslint-plugin-html": "7.1.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-import": "2.27.5",
+    "gulp": "4.0.2",
+    "gulp-autoprefixer": "9.0.0",
+    "gulp-clean-css": "4.3.0",
+    "gulp-concat": "2.6.1",
+    "gulp-connect": "5.7.0",
+    "gulp-dart-sass": "1.1.0",
+    "gulp-htmlmin": "5.0.1",
+    "gulp-imagemin": "9.0.0",
+    "gulp-inject": "5.0.5",
+    "gulp-rename": "2.0.0",
+    "gulp-replace": "1.1.4",
+    "gulp-rimraf": "1.0.0",
+    "gulp-sass": "5.1.0",
+    "jest": "29.7.0",
+    "prettier": "^3.1.0"
+  }
+}

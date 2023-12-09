@@ -1,0 +1,27 @@
+.input {
+  &__control {
+    background: #addcbb;
+    display: block;
+    border: 0;
+    outline: 0;
+    color: #fffdc5;
+    border-radius: 25px;
+    font-size: 60px;
+    text-align: center;
+    margin-top: 5px;
+    width: 100%;
+
+    &:focus {
+      outline-color: var(--bg-focus);
+    }
+
+    &::placeholder {
+      color: #fffdc5;
+    }
+
+    &:invalid.bounce {
+      background: var(--color-error);
+    }
+  }
+}
+

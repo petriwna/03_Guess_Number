@@ -1,0 +1,44 @@
+.settings {
+  margin-top: 10px;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  &__items {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  &__text {
+  }
+
+  &__inputs {
+    &--flex {
+      display: flex;
+      gap: 15px;
+    }
+
+    &--padding {
+      padding-top: 22px;
+    }
+  }
+
+  &__button {
+    background: var(--color-secondary-orang);
+    border-top: 3px solid var(--color-border-top);
+    border-bottom: 3px solid var(--color-border-bottom);
+    &:hover {
+      background: var(--color-hover-btn-orang);
+    }
+  }
+
+  &__error {
+    color: var(--color-error);
+  }
+}

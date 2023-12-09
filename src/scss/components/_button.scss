@@ -1,0 +1,28 @@
+.button {
+  border: 0;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-family: inherit;
+  box-shadow: var(--box-shadow);
+  color: var(--color-text-white);
+  text-shadow: var(--text-shadow);
+  font-weight: 800;
+  width: 272px;
+  cursor: pointer;
+
+  &:active {
+    transform: translateY(4px);
+  }
+
+  &:disabled {
+    background-color: #1F2421;
+    cursor: none;
+    border: none;
+    color: grey;
+  }
+
+  &:disabled:hover {
+    background-color: #1F2421;
+  }
+}

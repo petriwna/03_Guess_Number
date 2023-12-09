@@ -1,0 +1,50 @@
+.container {
+  width: 100%;
+  max-width: 998px;
+  background-color: var(--color-secondary-orang);
+  position: relative;
+  border-radius: 20px;
+  box-shadow: var(--box-shadow);
+  color: rgba(var(--bs-dark-rgb),1)!important;
+  padding: 40px;
+  gap: 15px;
+  display: flex;
+  flex-direction: column;
+  font-weight: 800;
+  margin: 77px 0;
+
+  &__title {
+    background-color: var(--color-secondary-orang-light);
+    border: 0;
+    border-top: 3px solid var(--color-secondary-orang-light_2);
+    border-bottom: 3px solid var(--color-secondary-orang-dark);
+    border-radius: 30px;
+    padding: 10px 15px;
+    font-size: 30px;
+    color: var(--color-primary-light);
+    text-shadow: var(--text-shadow);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    width: 90%;
+    position: absolute;
+    top: -55px;
+    left: 5%;
+  }
+
+  &__number {
+    width: 100%;
+    max-width: 575px;
+    margin: 0 auto;
+  }
+
+  &__button {
+    background-color: var(--color-secondary-blue);
+    border-top: 3px solid var(--color-secondary-blue-light);
+    border-bottom: 3px solid var(--color-secondary-blue-dark);
+    align-self: center;
+
+    &:hover {
+      background: var(--color-secondary-blue-light);
+    }
+  }
+}
