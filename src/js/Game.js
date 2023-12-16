@@ -1,4 +1,13 @@
-import { addListener, getNodeValue, setNodeInnerText } from './utils';
+import {
+  addClassToElement,
+  addEventToElement,
+  disableBtn,
+  enableButton,
+  getNodeValue,
+  removeClassFromElement,
+  setNodeInnerText,
+  setNodeValue,
+} from './utils';
 
 export class Game {
   constructor() {
@@ -16,7 +25,7 @@ export class Game {
   }
 
   clickBtn(id, callback) {
-    addListener(id, 'click', callback);
+    addEventToElement(id, 'click', callback);
   }
 
   setupEventListeners() {
@@ -28,20 +37,19 @@ export class Game {
   handleBtnSaveClick() {
     const inputs = document.querySelectorAll('.input-js');
     const isError = this.validateInputs(inputs);
-    const userNumber = document.getElementById('guess');
 
     if (!isError) {
       this.updateGameSettings();
-      this.removeDisableBtn('btn_generate');
-      this.disableBtn('btn_save');
-      userNumber.value = '';
+      enableButton('btn_generate');
+      disableBtn('btn_save');
+      setNodeValue('guess', '');
       setNodeInnerText('message', 'Почати...');
     }
   }
 
   handleBtnGenerateClick() {
-    this.disableBtn('btn_save');
-    const userNumber = Number(document.getElementById('guess').value);
+    disableBtn('btn_save');
+    const userNumber = Number(getNodeValue('guess'));
     this.checkUserNumber(userNumber);
   }
 
@@ -54,19 +62,19 @@ export class Game {
 
     inputs.forEach((input) => {
       if (!this.isValidationNumber(input.value)) {
-        this.handleInputError(input, 'Числа попинні бути не негативні та цілими!');
-        this.disableBtn('btn_generate');
+        this.handleInputError(input.id, 'Числа попинні бути не негативні та цілими!');
+        disableBtn('btn_generate');
         isError = true;
       } else if (input.id === 'min' || input.id === 'max') {
         if (this.validationMinAndMax(input.value)) {
-          this.handleInputError(input, 'Можливий діапазон чисел від 1 до 200!');
-          this.disableBtn('btn_generate');
+          this.handleInputError(input.id, 'Можливий діапазон чисел від 1 до 200!');
+          disableBtn('btn_generate');
           isError = true;
         }
       } else if (input.id === 'attempt') {
         if (this.validationAttempt(input.value)) {
-          this.handleInputError(input, 'Можлива кількість спроб від 1 до 15!');
-          this.disableBtn('btn_generate');
+          this.handleInputError(input.id, 'Можлива кількість спроб від 1 до 15!');
+          disableBtn('btn_generate');
           isError = true;
         }
         setNodeInnerText('attempt', this.attempt);
@@ -77,61 +85,53 @@ export class Game {
     return isError;
   }
 
-  handleInputError(input, message) {
-    input.classList.add('bounce');
+  handleInputError(inputId, message) {
+    addClassToElement(inputId, 'bounce');
     setNodeInnerText('error', message);
 
     setTimeout(function () {
-      input.classList.remove('bounce');
+      removeClassFromElement(inputId, 'bounce');
       setNodeInnerText('error', '');
     }, 1100);
   }
 
   updateGameSettings() {
-    const message = document.getElementById('message');
-    const secretContainer = document.getElementById('secret');
     const body = document.querySelector('body');
 
     this.saveSettings();
     this.renderSettingsToTitle();
     body.removeAttribute('style');
 
-    message.classList.remove('lost');
-    message.classList.remove('win');
-    secretContainer.classList.remove('shake');
+    removeClassFromElement('message', 'win');
+    removeClassFromElement('message', 'lost');
+    removeClassFromElement('secret', 'shake');
 
-    secretContainer.classList.add('base');
-    secretContainer.classList.remove('container-lost');
+    addClassToElement('secret', 'base');
+    removeClassFromElement('secret', 'container-lost');
     setNodeInnerText('secret', '?');
   }
 
   resetGame() {
-    const inputMin = document.getElementById('min');
-    const inputMax = document.getElementById('max');
-    const inputAttempt = document.getElementById('attempt');
-    const userNumber = document.getElementById('guess');
-    const message = document.getElementById('message');
-    const secretContainer = document.getElementById('secret');
     const body = document.querySelector('body');
 
     body.removeAttribute('style');
 
-    message.classList.remove('lost');
-    message.classList.remove('win');
-    secretContainer.classList.remove('shake');
+    removeClassFromElement('message', 'lost');
+    removeClassFromElement('message', 'win');
+    removeClassFromElement('secret', 'shake');
 
-    secretContainer.classList.add('base');
-    secretContainer.classList.remove('container-lost');
+    addClassToElement('secret', 'base');
+    removeClassFromElement('secret', 'container-lost');
 
     setNodeInnerText('secret', '?');
 
-    this.removeDisableBtn('btn_save');
-    this.removeDisableBtn('btn_generate');
+    enableButton('btn_save');
+    enableButton('btn_generate');
 
-    inputMin.value = '1';
-    inputMax.value = '100';
-    inputAttempt.value = '5';
-    userNumber.value = '';
+    setNodeValue('min', '1');
+    setNodeValue('max', '100');
+    setNodeValue('attempt', '5');
+    setNodeValue('guess', '');
 
     this.min = 1;
     this.max = 100;
@@ -142,44 +142,42 @@ export class Game {
   }
 
   checkUserNumber(userNumber) {
-    const secretContainer = document.getElementById('secret');
-    const message = document.getElementById('message');
     const body = document.querySelector('body');
 
     if (!userNumber) {
       setNodeInnerText('message', 'Не число!');
     } else if (userNumber === this.secretNumber) {
-      this.handleCorrectGuess(body, message, secretContainer);
+      this.handleCorrectGuess(body);
     } else {
-      this.handleIncorrectGuess(userNumber, body, message, secretContainer);
+      this.handleIncorrectGuess(userNumber);
     }
   }
 
-  handleCorrectGuess(body, message, secretContainer) {
+  handleCorrectGuess(body) {
     setNodeInnerText('secret', this.secretNumber);
     setNodeInnerText('message', 'Ви виграли!');
     body.style.background = '#3d7e52';
-    message.classList.add('win');
-    secretContainer.classList.add('shake');
-    this.disableBtn('btn_generate');
-    this.removeDisableBtn('btn_save');
+    addClassToElement('message', 'win');
+    addClassToElement('secret', 'shake');
+    disableBtn('btn_generate');
+    enableButton('btn_save');
   }
 
-  handleIncorrectGuess(userNumber, body, message, secretContainer) {
+  handleIncorrectGuess(userNumber) {
     if (this.attempt > 1) {
       setNodeInnerText('message', userNumber > this.secretNumber ? 'Занадто велике!' : 'Занадто маленьке!');
       this.attempt--;
       setNodeInnerText('attempt_count', this.attempt);
     } else {
       setNodeInnerText('message', 'Ви програли!');
-      message.classList.add('lost');
+      addClassToElement('message', 'lost');
       setNodeInnerText('secret', this.secretNumber);
-      secretContainer.classList.remove('base');
-      secretContainer.classList.add('shake');
-      secretContainer.classList.add('container-lost');
+      removeClassFromElement('secret', 'base');
+      addClassToElement('secret', 'shake');
+      addClassToElement('secret', 'container-lost');
       setNodeInnerText('attempt_count', '0');
-      this.disableBtn('btn_generate');
-      this.removeDisableBtn('btn_save');
+      disableBtn('btn_generate');
+      enableButton('btn_save');
     }
   }
 
@@ -211,15 +209,5 @@ export class Game {
 
   validationMinAndMax(value) {
     return value > 200 || value <= 0;
-  }
-
-  removeDisableBtn(id) {
-    const btn = document.getElementById(id);
-    btn.disabled = false;
-  }
-
-  disableBtn(id) {
-    const btn = document.getElementById(id);
-    btn.disabled = true;
   }
 }
