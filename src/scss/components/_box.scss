@@ -5,4 +5,9 @@
   border-radius: 30px;
   text-align: center;
   padding: 20px;
+
+  @media screen and (max-width: $bp-tablet){
+    padding: 8px;
+    font-size: 12px;
+  }
 }

@@ -32,16 +32,16 @@ const paths = {
 };
 
 gulp.task('clean', () => {
-    return gulp.src('dist', { read: false, allowEmpty: true })
+    return gulp.src('dist', {read: false, allowEmpty: true})
         .pipe(rimraf());
 });
 
 gulp.task('html', () => {
-    const sources = gulp.src(['./dist/**/*.js'], { read: false });
+    const sources = gulp.src(['./dist/**/*.js'], {read: false});
 
     return gulp.src(paths.html.src)
-        .pipe(htmlmin({ collapseWhitespace: true }))
-        .pipe(inject(sources, { relative: true }))
+        .pipe(htmlmin({collapseWhitespace: true}))
+        .pipe(inject(sources, {relative: true}))
         .pipe(gulp.dest(paths.html.dest))
 });
 
@@ -50,16 +50,16 @@ gulp.task('sass', () => {
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer())
         .pipe(cleanCSS())
-        .pipe(rename({ suffix: '.min' }))
+        .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest(paths.styles.dest));
 });
 
 gulp.task('scripts', () => {
     return gulp.src(paths.scripts.src)
-        .pipe(replace(/import .* from ['"].*['"];?\n?/g, ''))
+        .pipe(replace(/import \{[^}]*\} from ['"].*['"];?\n?/g, ''))
         .pipe(concat('bundle.js'))
         .pipe(gulp.dest(paths.scripts.dest))
-});
+})
 
 gulp.task('images', () => {
     return gulp.src(paths.images.src)

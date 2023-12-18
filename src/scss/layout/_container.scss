@@ -13,6 +13,12 @@
   font-weight: 800;
   margin: 77px 0;
 
+  @media screen and (max-width: $bp-tablet){
+    margin: 0;
+    border-radius: 0;
+    padding: 20px;
+  }
+
   &__title {
     background-color: var(--color-secondary-orang-light);
     border: 0;
@@ -29,6 +35,13 @@
     position: absolute;
     top: -55px;
     left: 5%;
+
+    @media screen and (max-width: $bp-tablet){
+      font-size: 15px;
+      position: static;
+      width: 100%;
+      margin-bottom: 0;
+    }
   }
 
   &__number {

@@ -11,6 +11,12 @@
   width: 272px;
   cursor: pointer;
 
+  @media screen and (max-width: $bp-tablet){
+    width: 50%;
+    font-size: 15px;
+    padding: 10px;
+  }
+
   &:active {
     transform: translateY(4px);
   }
