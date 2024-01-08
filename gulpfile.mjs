@@ -10,8 +10,8 @@ import rimraf from 'gulp-rimraf';
 import htmlmin from 'gulp-htmlmin';
 import inject from 'gulp-inject';
 import replace from 'gulp-replace';
+import ghPages from 'gulp-gh-pages';
 
-// Paths
 const paths = {
     styles: {
         src: 'src/scss/**/*.scss',
@@ -91,4 +91,8 @@ gulp.task('reload', (done) => {
     done();
 });
 
+gulp.task('deploy', function() {
+    return gulp.src('./dist/**/*')
+        .pipe(ghPages());
+});
 
