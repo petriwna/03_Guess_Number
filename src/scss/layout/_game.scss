@@ -8,7 +8,8 @@
 
   &__title {
     font-weight: 800;
-    font-size: 35px;
+    font-size: 28px;
+    margin-bottom: 18px;
 
     @media screen and (max-width: $bp-tablet){
       font-size: 18px;
@@ -20,7 +21,7 @@
     gap: 15px;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 15px;
     text-align: left;
 
     @media screen and (max-width: $bp-tablet){
@@ -31,7 +32,7 @@
   }
 
   &__text {
-    font-size: 35px;
+    font-size: 28px;
     margin-bottom: 0;
 
     @media screen and (max-width: $bp-tablet){
@@ -46,13 +47,13 @@
   }
 
   &__button {
-    background: var(--color-secondary-orang);
+    background: var(--color-secondary-green);
     border-top: 3px solid var(--color-border-top);
     border-bottom: 3px solid var(--color-border-bottom);
     width: 100%;
 
     &:hover {
-      background: var(--color-hover-btn-orang);;
+      background: var(--color-hover-btn);;
     }
   }
 }

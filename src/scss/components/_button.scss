@@ -1,19 +1,19 @@
 .button {
   border: 0;
   border-radius: 30px;
-  padding: 10px 20px;
-  font-size: 20px;
+  padding: 8px 18px;
+  font-size: 18px;
   font-family: inherit;
   box-shadow: var(--box-shadow);
   color: var(--color-text-white);
   text-shadow: var(--text-shadow);
   font-weight: 800;
-  width: 272px;
+  width: 254px;
   cursor: pointer;
 
   @media screen and (max-width: $bp-tablet){
     width: 50%;
-    font-size: 15px;
+    font-size: 13px;
     padding: 10px;
   }
 

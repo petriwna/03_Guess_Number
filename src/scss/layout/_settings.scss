@@ -8,13 +8,13 @@
   &__wrapper {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 8px;
     align-items: center;
   }
 
   &__items {
     display: flex;
-    gap: 15px;
+    gap: 8px;
     width: 100%;
     justify-content: space-around;
 
@@ -26,6 +26,7 @@
 
   &__text {
     text-wrap: nowrap;
+    margin-bottom: 5px;
   }
 
   &__inputs {
@@ -45,15 +46,16 @@
   }
 
   &__button {
-    background: var(--color-secondary-orang);
+    background: var(--color-secondary-green);
     border-top: 3px solid var(--color-border-top);
     border-bottom: 3px solid var(--color-border-bottom);
     &:hover {
-      background: var(--color-hover-btn-orang);
+      background: var(--color-hover-btn);
     }
   }
 
   &__error {
     color: var(--color-error);
+    margin-bottom: 0;
   }
 }
